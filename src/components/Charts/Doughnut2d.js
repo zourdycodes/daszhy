@@ -27,7 +27,7 @@ const ChartDoughnut2D = ({ data }) => {
     dataSource: {
       // Chart Configuration
       chart: {
-        caption: "Most Popular Language",
+        caption: "Stars Per Language",
         theme: "candy",
         decimals: 0,
         doughnutRadius: "45%",
