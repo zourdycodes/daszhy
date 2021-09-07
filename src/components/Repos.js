@@ -41,13 +41,47 @@ const Repos = () => {
     })
     .slice(0, 5);
 
+  // stars and forks
+  let { stars, forks } = repos.reduce(
+    (total, item) => {
+      const { stargazers_count, name, forks } = item;
+
+      total.stars[stargazers_count] = { label: name, value: stargazers_count };
+
+      total.forks[forks] = {
+        label: name,
+        value: forks,
+      };
+
+      return total;
+    },
+    {
+      stars: {},
+      forks: {},
+    }
+  );
+
+  stars = Object.values(stars)
+    .sort((a, b) => {
+      return b.value - a.value;
+    })
+    .slice(-5);
+
+  forks = Object.values(forks)
+    .sort((a, b) => {
+      return b.value - a.value;
+    })
+    .slice(-5);
+
+  console.log(stars, forks);
+
   return (
     <section className="section">
       <Wrapper className="section-center">
         <Pie3D data={mostUsedLanguages} />
-        <Column3D data={mostPopularLanguages} />
+        <Column3D data={stars} />
         <Doughnut2D data={mostPopularLanguages} />
-        <Bar3D data={mostPopularLanguages} />
+        <Bar3D data={forks} />
       </Wrapper>
     </section>
   );
