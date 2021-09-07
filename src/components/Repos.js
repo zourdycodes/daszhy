@@ -73,8 +73,6 @@ const Repos = () => {
     })
     .slice(-5);
 
-  console.log(stars, forks);
-
   return (
     <section className="section">
       <Wrapper className="section-center">
